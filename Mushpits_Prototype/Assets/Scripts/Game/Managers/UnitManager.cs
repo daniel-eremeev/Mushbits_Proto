@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
+using Utility.GameStateSystem;
 
 namespace Game.Managers
 {
@@ -18,7 +18,7 @@ namespace Game.Managers
             ActiveUnits.Remove(unit);
 
             if (ActiveUnits.Count == 0)
-                Debug.Log("Level Complete");
+                GameStateManager.CurrentState = GameState.Win;
         }
 
         public static bool IsUnitOnBlock(Block block)

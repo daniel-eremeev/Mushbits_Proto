@@ -1,12 +1,10 @@
-using UnityEngine;
-
 namespace Game
 {
-    public class Goal : FactionObject
+    public class Goal : SelectableObject
     {
-        private void Awake()
+        private void Start()
         {
-            GetComponentInChildren<MeshRenderer>().material.color = GetFactionColor(faction);
+            colorPicker.UpdateColor(faction);
         }
     }
 }

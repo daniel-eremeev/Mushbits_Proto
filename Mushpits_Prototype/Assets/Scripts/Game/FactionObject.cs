@@ -7,25 +7,7 @@ namespace Game
     {
         [SerializeField] protected FactionType faction;
         public FactionType Faction => faction;
-        
-        protected Color GetFactionColor(FactionType type)
-        {
-            Color factionColor;
-            switch (type)
-            {
-                case FactionType.Pink:
-                    factionColor = Color.magenta;
-                    break;
-                case FactionType.Blue:
-                    factionColor = Color.blue;
-                    break;
-                default:
-                    factionColor = Color.yellow;
-                    break;
-            }
-            return factionColor;
-        }
-        
+
         protected FactionType GetOpposingFaction(FactionType factionType)
         {
             FactionType opposingFaction;

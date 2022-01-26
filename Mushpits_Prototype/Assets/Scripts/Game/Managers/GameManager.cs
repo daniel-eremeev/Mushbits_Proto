@@ -5,6 +5,7 @@ namespace Game.Managers
 {
     public class GameManager : MonoBehaviour
     {
+        [SerializeField] private LayerMask mask;
         public static event Action<Block> OnSelect;
 
         private Camera mainCamera;
@@ -17,6 +18,7 @@ namespace Game.Managers
             InputManager.OnClick += HandleClick;
             InputManager.OnRelease += HandleRelease;
         }
+        
 
         private void OnDestroy()
         {
@@ -58,7 +60,7 @@ namespace Game.Managers
         {
             var ray = mainCamera.ScreenPointToRay(Input.mousePosition + Vector3.forward * -10);
             
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, mask))
             {
                 return true;
             }

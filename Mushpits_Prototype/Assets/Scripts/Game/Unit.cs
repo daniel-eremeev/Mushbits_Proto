@@ -6,14 +6,15 @@ namespace Game
 {
     public class Unit : FactionObject
     {
+        [SerializeField] private SpriteHandler spriteHandler;
         [SerializeField] private Block currentBlock;
         public Block CurrentBlock => currentBlock;
 
         private void Awake()
         {
+            if (spriteHandler == null)
+                spriteHandler = GetComponentInChildren<SpriteHandler>();
             this.Register();
-
-            GetComponentInChildren<MeshRenderer>().material.color = GetFactionColor(faction);
         }
 
         private void Start()
@@ -31,7 +32,10 @@ namespace Game
             if (Physics.Raycast(transform.position + Vector3.up / 2, -Vector3.up, out RaycastHit hit, 1f))
             {
                 if (hit.collider.TryGetComponent<Block>(out var block))
+                {
                     currentBlock = block;
+                    currentBlock.SetUnitOnBlock(this);
+                }
             }
         }
 
@@ -39,14 +43,20 @@ namespace Game
         {
             UpdateCurrentBlock();
             currentBlock.ChangeFaction(faction);
-            VfxManager.PlayExplosion(transform.position);
+            VfxManager.PlayExplosion(transform.position, faction);
             gameObject.SetActive(false);
         }
 
         public Tween Jump(Block previousBlock, Transform nextBlock)
         {
             Sequence sequence = DOTween.Sequence();
-            sequence.Append(DOVirtual.DelayedCall(0f, () => previousBlock.ChangeFaction(faction)));
+            sequence.Append(DOVirtual.DelayedCall(0f, () =>
+            {
+                spriteHandler.UpdateFacingDirection(nextBlock.position);
+                
+                previousBlock.ChangeFaction(faction);
+                previousBlock.SetUnitOnBlock(null);
+            }));
             sequence.Append(transform.DOJump(nextBlock.transform.position, .75f, 1, 0.25f).SetEase(Ease.Linear));
             sequence.Append(transform.DOMoveY(transform.position.y - 0.25f, 0.05f).SetEase(Ease.OutQuad));
             sequence.Insert(0.25f, nextBlock.DOMoveY(nextBlock.position.y - 0.25f, 0.05f).SetEase(Ease.OutQuad));
@@ -57,7 +67,7 @@ namespace Game
 
         public bool IsOnGoal()
         {
-            Debug.DrawRay(transform.position + Vector3.up, -Vector3.up, Color.green, 10f);
+            /*Debug.DrawRay(transform.position + Vector3.up, -Vector3.up, Color.green, 10f);*/
             if (Physics.Raycast(transform.position + Vector3.up, -Vector3.up, out RaycastHit hit))
             {
                 if (hit.collider.TryGetComponent<Goal>(out var goal) && goal.Faction == faction)
@@ -66,7 +76,6 @@ namespace Game
                     return true;
                 }
             }
-
             return false;
         }
     }

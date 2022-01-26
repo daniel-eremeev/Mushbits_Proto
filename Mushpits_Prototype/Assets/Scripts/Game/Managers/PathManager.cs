@@ -8,7 +8,7 @@ namespace Game.Managers
     public class PathManager : MonoBehaviour
     {
         [SerializeField] private List<Block> blockPath = new List<Block>();
-        [SerializeField] private List<Block> removePath = new List<Block>();
+        private readonly List<Block> removePath = new List<Block>();
 
         private void Awake()
         {
@@ -24,10 +24,15 @@ namespace Game.Managers
 
         private void HandleSelect(Block block)
         {
-            if ((blockPath.Count == 0 || block.Faction != UnitManager.GetUnitOnBlock(blockPath[0]).Faction &&
-                block.Faction != FactionType.Yellow) && blockPath.Count != 0) 
+            if ((blockPath.Count == 0 ||
+                 block.Faction != UnitManager.GetUnitOnBlock(blockPath[0]).Faction &&
+                 block.Faction != FactionType.Yellow) && blockPath.Count != 0)
                 return;
-            
+
+            if (blockPath.Count != 0 && block.UnitOnBlock != null &&
+                block.UnitOnBlock != UnitManager.GetUnitOnBlock(blockPath[0]))
+                return;
+
             if (!blockPath.Contains(block))
             {
                 if (blockPath.Count != 0 && !block.Neighbours.Any(neighbour => (neighbour == blockPath.Last())))

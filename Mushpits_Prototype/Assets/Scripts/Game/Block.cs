@@ -4,12 +4,24 @@ using UnityEngine;
 
 namespace Game
 {
-    public class Block : FactionObject
+    public class Block : SelectableObject
     {
-        [SerializeField] private bool isLocked;
-        
+        [SerializeField] private BlockType defaultType;
         [SerializeField] private List<Block> neighbours = new List<Block>();
+        
         public IEnumerable<Block> Neighbours => neighbours;
+        public Unit UnitOnBlock { get; private set; }
+
+        private BlockType type;
+
+        private BlockType Type
+        {
+            set
+            {
+                type = value;
+                colorPicker.UpdateTexture(type);
+            }
+        }
 
         #region Initialization
 
@@ -32,6 +44,7 @@ namespace Game
 
         private bool GetNeighbour(Vector3 direction, out Block block)
         {
+            Debug.DrawRay(transform.position, direction, Color.magenta, 10f);
             if (Physics.Raycast(transform.position, direction, out RaycastHit hit, 1f))
             {
                 if (hit.collider.TryGetComponent(out block))
@@ -44,28 +57,24 @@ namespace Game
 
         #endregion
 
-        private void Awake()
+        private void Start()
         {
-            GetComponentInChildren<MeshRenderer>().material.color = GetFactionColor(faction);
-        }
-
-        public void Select()
-        {
-            GetComponentInChildren<MeshRenderer>().material.color = Color.green;
-        }
-        
-        public void RemoveSelection()
-        {
-            GetComponentInChildren<MeshRenderer>().material.color = GetFactionColor(faction);
+            Type = defaultType;
+            RemoveSelection();
         }
 
         public void ChangeFaction(FactionType unitFaction)
         {
-            if(isLocked)
+            if(type == BlockType.Frozen)
                 return;
             
             faction = GetOpposingFaction(unitFaction);
             RemoveSelection();
+        }
+
+        public void SetUnitOnBlock(Unit unit)
+        {
+            UnitOnBlock = unit;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Utility.GameStateSystem;
 
 namespace Game.Managers
 {
@@ -10,9 +11,12 @@ namespace Game.Managers
         public static event Action OnRelease;
 
         private bool isHolding;
-        
+
         private void Update()
         {
+            if(GameStateManager.CurrentState != GameState.Game)
+                return;
+            
             if (Input.GetMouseButtonDown(0) && !isHolding)
             {
                 OnClick?.Invoke();
