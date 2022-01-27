@@ -43,7 +43,7 @@ namespace Game
         {
             UpdateCurrentBlock();
             currentBlock.ChangeFaction(faction);
-            VfxManager.PlayExplosion(transform.position, faction);
+            VfxManager.playExplosion(transform.position, faction);
             gameObject.SetActive(false);
         }
 

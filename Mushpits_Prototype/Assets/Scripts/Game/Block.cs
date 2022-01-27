@@ -32,14 +32,14 @@ namespace Game
 
         private void FindNeighbours()
         {
-            if (GetNeighbour(Vector3.forward, out var forwardNeighbour))
-                neighbours.Add(forwardNeighbour);
-            if (GetNeighbour(-Vector3.forward, out var backNeighbour))
-                neighbours.Add(backNeighbour);
-            if (GetNeighbour(Vector3.right, out var rightNeighbour))
-                neighbours.Add(rightNeighbour);
-            if (GetNeighbour(-Vector3.right, out var leftNeighbour))
-                neighbours.Add(leftNeighbour);
+            if (GetNeighbour(Vector3.forward, out var neighbourBlock))
+                neighbours.Add(neighbourBlock);
+            if (GetNeighbour(-Vector3.forward, out neighbourBlock))
+                neighbours.Add(neighbourBlock);
+            if (GetNeighbour(Vector3.right, out neighbourBlock))
+                neighbours.Add(neighbourBlock);
+            if (GetNeighbour(-Vector3.right, out neighbourBlock))
+                neighbours.Add(neighbourBlock);
         }
 
         private bool GetNeighbour(Vector3 direction, out Block block)

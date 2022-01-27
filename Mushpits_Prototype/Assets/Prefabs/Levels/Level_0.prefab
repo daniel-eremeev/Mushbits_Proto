@@ -805,22 +805,6 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 8582750464265104342, guid: c7d2fd71a636d91478e622fc7f8909bd, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.400476
-      objectReference: {fileID: 0}
-    - target: {fileID: 8582750464265104342, guid: c7d2fd71a636d91478e622fc7f8909bd, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.20596945
-      objectReference: {fileID: 0}
-    - target: {fileID: 8582750464265104342, guid: c7d2fd71a636d91478e622fc7f8909bd, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.79399943
-      objectReference: {fileID: 0}
-    - target: {fileID: 8582750464265104342, guid: c7d2fd71a636d91478e622fc7f8909bd, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.40836313
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7d2fd71a636d91478e622fc7f8909bd, type: 3}
 --- !u!4 &7304079710523736287 stripped
@@ -968,22 +952,6 @@ PrefabInstance:
     - target: {fileID: 3539718032906676029, guid: d647c31aa91487b41890ab6e7a26170a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4262829958993187772, guid: d647c31aa91487b41890ab6e7a26170a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.369946
-      objectReference: {fileID: 0}
-    - target: {fileID: 4262829958993187772, guid: d647c31aa91487b41890ab6e7a26170a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.146838
-      objectReference: {fileID: 0}
-    - target: {fileID: 4262829958993187772, guid: d647c31aa91487b41890ab6e7a26170a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.8526655
-      objectReference: {fileID: 0}
-    - target: {fileID: 4262829958993187772, guid: d647c31aa91487b41890ab6e7a26170a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.33843777
       objectReference: {fileID: 0}
     - target: {fileID: 4262829958993187775, guid: d647c31aa91487b41890ab6e7a26170a, type: 3}
       propertyPath: mainCamera

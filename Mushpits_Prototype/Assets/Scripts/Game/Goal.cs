@@ -1,10 +1,7 @@
 namespace Game
 {
-    public class Goal : SelectableObject
+    public class Goal : FactionObject
     {
-        private void Start()
-        {
-            colorPicker.UpdateColor(faction);
-        }
+        //OLOLOLOLOLOL
     }
 }

@@ -58,7 +58,7 @@ namespace Game.Managers
         
         private bool Raycast(out RaycastHit hit)
         {
-            var ray = mainCamera.ScreenPointToRay(Input.mousePosition + Vector3.forward * -10);
+            var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, mask))
             {

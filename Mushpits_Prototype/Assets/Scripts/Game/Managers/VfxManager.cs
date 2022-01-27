@@ -9,11 +9,11 @@ namespace Game.Managers
         [SerializeField] private ParticleSystem blueExplosionVFX;
         [SerializeField] private ParticleSystem pinkExplosionVFX;
 
-        public static Action<Vector3, FactionType> PlayExplosion;
+        public static Action<Vector3, FactionType> playExplosion;
 
         private void Awake()
         {
-            PlayExplosion = HandlePlayVfx;
+            playExplosion = HandlePlayVfx;
         }
 
         private void HandlePlayVfx(Vector3 position, FactionType factionType)
